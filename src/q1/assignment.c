@@ -1,9 +1,6 @@
 #include <stdio.h>
 
 int main(int arg, char* argc[]){
-    printf("Hello assignment1.\n");
-    printf("Hello assignment1.\n");
-
     int x = 1;
     int *xp = &x;
     long y = 8; 
@@ -22,4 +19,3 @@ int main(int arg, char* argc[]){
     printf("Size of variable: %lu \n", sizeof(**z));
   
 }
-
