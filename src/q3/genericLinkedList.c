@@ -74,15 +74,16 @@ genericListElement *createEl(void *data, size_t size, printSomething printFunc){
     //malloc has had an error
     return NULL; //return NULL to indicate an error.
   }
-  char* dataPointer = malloc(sizeof(char)*size);
+  void *dataPointer = malloc(size);
   if(dataPointer == NULL){
     //malloc has had an error
     free(e); //release the previously allocated memory
     return NULL; //return NULL to indicate an error.
   }
-  strcpy(dataPointer, data);
+  memmove(dataPointer, data, size);
   e->data = dataPointer;
   e->size = size;
+  e->print = printFunc; //dumb moment - don't forget
   e->next = NULL;
   return e;
 }
@@ -92,9 +93,6 @@ void traverse(genericListElement *start){
   genericListElement *current = start;
 
   while(current != NULL){
-    printf("%s\n", current->data);
-    //pointer to print member of struct printSomething()
-    //code not currently working as it should
     current->print(current->data);
     current = current->next;
   }
